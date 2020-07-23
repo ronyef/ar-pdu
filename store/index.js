@@ -11,7 +11,8 @@ export const state = () => ({
   },
   user: {},
   testCol: [],
-  eventList: []
+  eventList: [],
+  eventsByMachineList: []
 })
 export const mutations = {
   ...vuexfireMutations,
@@ -42,6 +43,15 @@ export const actions = {
   bindEventsCollection: firestoreAction(async function({ bindFirestoreRef }) {
     const eventsRef = this.$fireStore.collection('events')
     await bindFirestoreRef('eventList', eventsRef)
+  }),
+  bindEventsByMachineCollection: firestoreAction(async function(
+    { bindFirestoreRef },
+    param
+  ) {
+    const eventByMachineRef = this.$fireStore
+      .collection('events')
+      .where('machine', '==', param)
+    await bindFirestoreRef('eventsByMachineList', eventByMachineRef)
   }),
   initAuth(vuexContext, req) {
     let token
@@ -87,6 +97,9 @@ export const getters = {
   },
   events(state) {
     return state.eventList
+  },
+  eventsByMachine(state) {
+    return state.eventsByMachineList
   },
   isAuthenticated(state) {
     return state.auth.loggedIn

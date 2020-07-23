@@ -51,32 +51,6 @@ export default {
         { text: 'Category', value: 'category' },
         { text: 'Level', value: 'level' },
         { text: 'Actions', value: 'actions', sortable: false }
-      ],
-      faults: [
-        {
-          equipment: 'T234',
-          date: '23-05-2020',
-          time: '15:20',
-          fault: 'Radio Error',
-          category: 'Auxiliary',
-          level: 'Warning'
-        },
-        {
-          equipment: 'T345',
-          date: '23-05-2020',
-          time: '15:25',
-          fault: 'Strobe Error',
-          category: 'Safety',
-          level: 'Danger'
-        },
-        {
-          equipment: 'T734',
-          date: '26-05-2020',
-          time: '01:13',
-          fault: '12V Supply Error',
-          category: 'Power',
-          level: 'Danger'
-        }
       ]
     }
   },
@@ -93,7 +67,7 @@ export default {
   methods: {
     detailItem(item) {
       console.log(item)
-      this.$router.push('/dashboard/' + item.equipment)
+      this.$router.push('/dashboard/' + item.machine)
     }
   }
 }
